@@ -1,0 +1,8 @@
+---
+filetest::message: "This came from hiera"
+
+msm_base::additional_kernel_parameters: 
+  biosdevname: 
+    ensure: present 
+    value: '0' 
+
