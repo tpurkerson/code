@@ -28,7 +28,7 @@ node default {
   # This is where you can declare classes for all nodes.
   # Example:
   #   class { 'my_class': }
-notify { "Node ${fqdn} has no node definition": }
+#notify { "Node ${fqdn} has no node definition": }
 }
 node pe-201642-master {
 # class { 'pwcseccore':}
@@ -38,19 +38,28 @@ node pe-201642-master {
 # include dontbesosensitive
 # include tidytest
 # include zcomponent
+# include build_awr
+# include hostdemo
+include hostdemo2
+# include paramtest
+#class{'paramtest::enabling':
+#  value1 => true,
+#}
+#include variant_test
 }
 node pe-201642-agent-win2012 {
 include regtest
 }
-node pe-201642-agent-three {
- $e = $trusted['extensions']['pp_image_name']
-      notify { "pp_image_name = $e": }
- $f = $clientcert
-    notify { "cli cert = $f": }
-class { 'pwcseccore':}
-include filetest
-}
+#node pe-201642-agent-three {
+# $e = $trusted['extensions']['pp_image_name']
+#      notify { "pp_image_name = $e": }
+# $f = $clientcert
+#    notify { "cli cert = $f": }
+#class { 'pwcseccore':}
+#include filetest
+#}
 node pe-201642-agent {
  #include wl
  write_line_to_file('/tmp/some_file', "Hello world")
+# include build_awr
 }
